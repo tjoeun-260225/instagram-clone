@@ -19,6 +19,7 @@ public class ViewController {
     public String loginView() {
         return "user/login";
     }
+
     @GetMapping("/user/register")
     public String registerView() {
         return "user/register";
