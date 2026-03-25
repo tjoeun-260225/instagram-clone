@@ -27,7 +27,7 @@ public class ViewController {
 
     @GetMapping("/user/mypage")
     public String myPageView(){
-        return "user/mypage"
+        return "user/mypage";
     }
 
     @GetMapping("/board/list")
