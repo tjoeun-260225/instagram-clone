@@ -14,6 +14,14 @@ public class ViewController {
     public String indexView() {
         return "index";
     }
+    @GetMapping("/user/login")
+    public String loginView() {
+        return "user/login";
+    }
+    @GetMapping("/user/register")
+    public String registerView() {
+        return "user/register";
+    }
 
     @GetMapping("/board/list")
     public String listView(Model model) {
