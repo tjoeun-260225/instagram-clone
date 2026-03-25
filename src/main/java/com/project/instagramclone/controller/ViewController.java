@@ -23,6 +23,11 @@ public class ViewController {
         return "user/register";
     }
 
+    @GetMapping("/user/mypage")
+    public String myPageView(){
+        return "user/mypage"
+    }
+
     @GetMapping("/board/list")
     public String listView(Model model) {
         return "board/list";
