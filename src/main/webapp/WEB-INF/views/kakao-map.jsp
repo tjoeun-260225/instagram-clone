@@ -6,6 +6,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
           rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/kakao-map.css">
 </head>
 <body>
 <%--    html css 트렌드
@@ -144,9 +145,25 @@
         document.getElementById("place-"+locations[idx].id).classList.add("active");
 
     }
-
+/*
+혹시 우리 화살표 함수 배웠었나요? =>
+안 배웠다면 이 부분과  왜
+` 쓰는지 그리고 왜 여러 종류 중 innerHTML인 건지도 설명 부탁드려요.
+ */
 
 </script>
+<%--
+카카오에서 플랫폼 키를 가져올 때, 테스트 앱 -> 비즈 앱에 되어 있는 키를 가져온다.
+비즈 앱에 있는 키의 경우 사업자등록을 한 사람들이 정식적으로 운영하는 서비스이고,
+이 서비스를 운영하기 위해서 개발자가 테스트하는 용도로 총 5개까지 만들어서 테스트 할 수 있도록 테스트 앱 제공
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=c44a240eea76342b264917d72eb4eea3&onload=지도초기화"></script>
+--%>
+<%-- 비즈 앱 이 아닌 테스트 앱 -> 비즈 앱에 기재되어 있는 플랫폼 키에서 JavaScript 키 를 가져와 사용한다.--%>
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=fb918a29ba694ee0747e108f344cdea8&autoload=false"></script>
+<script>
+    kakao.maps.load(function (){
+        지도초기화();
+    });
+</script>
 </body>
 </html>
