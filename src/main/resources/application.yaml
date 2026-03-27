@@ -47,12 +47,23 @@ jwt:
 kakao:
   client-id: 7881146bcaadefd8b28158468c79f279
   redirect-uri: http://localhost:8080/api/kakao/callback
+  client-secret: LIIhP7k7xglgOqGRxAdGYxV4DynCXGpf
 
 
+logging:
+  level:
+    com.project.instagramclone: DEBUG   # 내 프로젝트
+    org.mybatis: DEBUG                   # MyBatis
+    java.sql: DEBUG                      # SQL 작성문
+    java.sql.ResultSet: DEBUG           # SQL 사용에 따른 결과
+    root: info                           # 기본은 INFO
+    com.zaxxer.hikari: DEBUG            # MYSQL 연결상태
+    org.springframework.jdbc: DEBUG     # JDBC
 
-
-
-
+# mybatis -> 우리나라는 정말 많이 사용
+# 외국 jpa -> org.mybatis 가 되지 않고,
+# java.sql
+# java.sql.ResultSet 을 사용하게 된다.
 
 
 
