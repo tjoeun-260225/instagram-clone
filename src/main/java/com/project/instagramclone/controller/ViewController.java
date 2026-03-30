@@ -1,9 +1,14 @@
 package com.project.instagramclone.controller;
 
+import com.project.instagramclone.model.dto.Location;
+import com.project.instagramclone.model.service.LocationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 /**
 확장자 별 파일 명칭
@@ -20,6 +25,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 @RequiredArgsConstructor
 public class ViewController {
+    private final LocationService locationService;
+
+    @ResponseBody
+    @GetMapping("/aaaaa")
+    public List<Location> aaa(){
+        return locationService.장소목록가져오기();
+    }
+
     @GetMapping("/")
     public String indexView() {
         return "index";
@@ -40,8 +53,10 @@ public class ViewController {
     }
 
     @GetMapping("/map")
-    public String kakaoMapView(){
-        return "kakao-map";
+    public String kakaoMapView(Model model){
+        List<Location> 장소목록데이터 = locationService.장소목록가져오기();
+        model.addAttribute("locations", 장소목록데이터);
+        return "kakao/kakao-map";
     }
 
     @GetMapping("/board/list")
@@ -63,4 +78,6 @@ public class ViewController {
     public String editView(int board_no, Model model) {
         return "board/edit";
     }
+
+
 }
