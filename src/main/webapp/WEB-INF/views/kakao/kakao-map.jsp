@@ -26,7 +26,7 @@
     <h1>카카오맵 마커</h1>
     <span>총 5개 저장소</span>
 </div>
-
+<xxx >안녕하세요~!</xxx>
 <div class="map-wrap">
     <div id="map"></div>
     <div class="side-panel">
