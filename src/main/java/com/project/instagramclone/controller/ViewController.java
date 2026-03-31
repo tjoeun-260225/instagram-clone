@@ -37,7 +37,7 @@ public class ViewController {
     public String indexView() {
         return "index";
     }
-    @GetMapping("/user/login")
+    @GetMapping("/login")
     public String loginView() {
         return "user/login";
     }
@@ -79,7 +79,7 @@ public class ViewController {
         return "board/edit";
     }
 
-    @GetMapping("/users/ist")
+    @GetMapping("/users/list")
     public String allUserView(){
         return "user/user-list";
     }

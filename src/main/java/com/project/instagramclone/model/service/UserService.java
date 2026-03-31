@@ -93,4 +93,11 @@ public class UserService {
     public List<User> 모든회원조회() {
         return userMapper.모든회원조회();
     }
+
+    public User 로그인(String email, String password) {
+        User user = userMapper.이메일로회원찾기(email);
+        if (user == null) return null;
+        if (!passwordEncoder.matches(password, user.getPassword())) return null;
+        return user;
+    }
 }
