@@ -4,7 +4,13 @@
     <div class="nav-inner">
         <a href="/" class="nav-logo">instagram</a>
 
-        <%-- 검색창 해시태그 드롭 다운 --%>
+        <%-- 검색창 해시태그 드롭 다운
+         autocomplete="on"   검색창 클릭하면 브라우저가 이전에 입력했던 값들을 아래로 쭉 보여주기
+         autocomplete="off"  검색창 클릭하면 브라우저에서 이전에 입력했던 값들을 보여주지 않는다.
+
+         브라우저가 이전에 입력했던 값을 자동으로 추천해주는 기능 끄는 속성
+         브라우저 캐시 지우기를 하면 모두 초기화 처리된다.
+         --%>
         <div id="검색창"
              class="nav-search-wrapper">
             <div class="nav-search-box">
