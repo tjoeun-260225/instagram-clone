@@ -11,3 +11,11 @@ public class InstagramCloneApplication {
     }
 
 }
+
+
+//public void 기능(){
+//    System.out.println("hi");
+//}
+//
+
+

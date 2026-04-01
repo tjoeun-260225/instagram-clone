@@ -1,4 +1,4 @@
-let 이메일인증완료 = false;    // 회원가입 창 들어오자마자 인증완료 되는 건 이상하다!! -> 인증한 적이 없기 때문에 초기에는 false
+let 이메일인증완료 = false;                                                      // 회원가입 창 들어오자마자 인증완료 되는 건 이상하다!! -> 인증한 적이 없기 때문에 초기에는 false
 
 async function 인증번호발송() {
     const email = document.getElementById("email").value.trim();
@@ -11,7 +11,7 @@ async function 인증번호발송() {
     const res = await fetch("/api/send-code", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }), // 여기 이메일로 인증번호 발송은 자바가 하도록 해~
+        body: JSON.stringify({ email }),                                                  // 여기 이메일로 인증번호 발송은 자바가 하도록 해~
     });
 
     if (res.ok) {
