@@ -181,7 +181,7 @@
             <c:otherwise>
                 <div class="guest-box">
                     <p>로그인하고 친구들의 게시물을 확인하세요.</p>
-                    <a href="/user/login" class="btn btn-blue" style="margin-bottom:8px;">로그인</a>
+                    <a href="/login" class="btn btn-blue" style="margin-bottom:8px;">로그인</a>
                     <a href="/user/register" class="btn btn-outline">가입하기</a>
                 </div>
             </c:otherwise>

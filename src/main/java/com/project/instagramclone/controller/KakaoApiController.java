@@ -32,7 +32,7 @@ public class KakaoApiController {
             // /user/kakao-register
         } catch (IOException e) {
             log.error("카카오 로그인 실패 : {}", e.getMessage());
-            response.sendRedirect("/user/login?error=kakao_fail");
+            response.sendRedirect("/login?error=kakao_fail");
         }
     }
 }
