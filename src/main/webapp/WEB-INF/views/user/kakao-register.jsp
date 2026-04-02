@@ -59,10 +59,12 @@
 
                 <div class="field-row">
                     <div class="field">
-                        <p class="field-input" type="email" id="email"> <%-- 수정못하게 막아버리기 --%>
+                        <input class="field-input" type="email" id="email" placeholder="이메일">
                         <label class="field-label" for="email">이메일</label>
                     </div>
+
                 </div>
+
 
                 <button class="btn btn-blue" id="register-btn" style="margin-top:12px;" onclick="가입하기()">
                     가입하기

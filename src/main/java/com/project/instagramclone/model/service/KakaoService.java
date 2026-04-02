@@ -14,6 +14,7 @@ import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -46,6 +47,48 @@ public class KakaoService {
         return "https://kauth.kakao.com/oauth/authorize?client_id=" + clientId + "&redirect_uri=" + redirectUri + "&response_type=code";
     }
 
+    /******** 수정되었다. 자동 회원가입에서 오직 본인 인증수단으로 교체 ********/
+    public void 카카오로그인(String 인가코드, HttpServletResponse response) throws IOException {
+        // 인가코드 -> 엑세스 토큰
+        // 카카오 엑세스 토큰 -> 이메일, 닉네임
+        String 카카오토큰 = 엑세스토큰발급(인가코드);
+
+        Map<String, String> 유저정보 = 유저정보조회(카카오토큰);
+        String 이메일 = 유저정보.get("email");
+        String 닉네임 = 유저정보.get("nickname");
+
+        if (이메일 == null) throw new RuntimeException("카카오 계정에 이메일 정보가 없습니다.");
+
+        // 1. 추가 - DB에 이미 가입된 유저인지 확인
+        boolean 기존회원유무 = userService.이메일중복체크기능(이메일);
+
+        if(기존회원유무) {
+            JWT발급후쿠키저장(이메일,response);
+            log.info("카카오 기존 회원 로그인 성공 :{}", 이메일);
+        } else {
+            String 이동주소 = "/user/kakao-register?email="+이메일+"&name="+(닉네임 != null ? 닉네임 : "");
+            response.sendRedirect(이동주소);
+            log.info("카카오 신규회원 -> 회원가입 페이지로 이 :{}", 이메일);
+        }
+
+
+    }
+    // ────────────────────────────────────────
+    // 3. JWT 발급 후 쿠키 저장 (기존 회원 로그인 시 사용)
+    // ────────────────────────────────────────
+    public void JWT발급후쿠키저장(String 이메일, HttpServletResponse response) {
+        // TODO 1 : 이메일로 access_token 생성
+        String 엑세스토큰 = jwtUtil.createAccessToken(이메일);
+        // TODO 2 : 이메일로 refresh_token 생성
+        String 리프레시토큰 = jwtUtil.createRefreshToken(이메일);
+        // JWT 발급 후 쿠키 저장
+        // TODO 3 : access_token 쿠키에 저장 (만료 30분)
+        cookieUtil.add(response, "access_token", 엑세스토큰, 60 * 30);
+        // TODO 4 : refresh_token 쿠키에 저장 (만료 7일)
+        cookieUtil.add(response, "refresh_token", 리프레시토큰, 60 * 60 * 24 * 7);
+    }
+
+    /******** 수정되었다.
     // ────────────────────────────────────────
     // 2. 카카오 로그인 메인 흐름 (컨트롤러에서 호출하는 서비스 위치)
     //    인가코드 -> 엑세스 토큰 -> 유저정보 -> 회원가입 or 스킵(회원가입 되어있으면 로그인~) -> JWT -> 쿠키발급
@@ -62,6 +105,7 @@ public class KakaoService {
 
         if (이메일 == null) throw new RuntimeException("카카오 계정에 이메일 정보가 없습니다.");
 
+
         // DB에 없으면 자동 회원가입
         User 신규유저 = new User();
         신규유저.setName(닉네임 != null ? 닉네임 : "카카오유저"); // 유저가 작성한 닉네임이 없으면 카카오유저라는 이름으로 저장
@@ -76,7 +120,7 @@ public class KakaoService {
 
         log.info("카카오 로그인 / 회원가입 성공 :{}", 이메일);
     }
-
+     ********/
     // ────────────────────────────────────────
     // 3. 인가코드 -> 카카오 엑세스토큰 발급
     // 인가코드 :

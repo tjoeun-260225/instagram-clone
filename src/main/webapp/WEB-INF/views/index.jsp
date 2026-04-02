@@ -175,6 +175,7 @@
                         <div class="sidebar-email">${loginUser.email}</div>
                     </div>
                     <button class="sidebar-logout" onclick="logout()">로그아웃</button>
+                    <%-- 로그아웃 기능 완성 과제!--%>
                 </div>
             </c:when>
 
