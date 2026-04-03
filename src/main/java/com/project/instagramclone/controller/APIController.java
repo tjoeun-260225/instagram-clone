@@ -54,13 +54,14 @@ public class APIController {
     // 로그아웃
     @PostMapping("/api/logout")
     public ResponseEntity<?> 로그아웃(HttpServletResponse response) {
-        // TODO 1 : access_token 쿠키 삭제
         cookieUtil.delete(response, "access_token");
-        // TODO 2 : refresh_token 쿠키 삭제
         cookieUtil.delete(response, "refresh_token");
-
-        // TODO 3 : 200 OK 응답 반환
         return  ResponseEntity.ok(Map.of("message","로그아웃 완료"));
+    }
+
+    @PostMapping("/api/board/write")
+    public ResponseEntity<?> 게시물등록(){
+        return  ResponseEntity.ok(Map.of("message","게시물 등록 완료"));
     }
 }
 

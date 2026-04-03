@@ -40,7 +40,7 @@
         결과 : kim, parkkim123, kimchi, parkim ...
         단어에 kim 이 들어가면 된다.
     -->
-    <select id="유저명검색" resultType="com.project.instagramclone.model.mapper.UserMapper">
+    <select id="유저명검색" resultType="com.project.instagramclone.model.dto.User">
     SELECT id, name, email, users.profile_img
     FROM users
     WHERE name LIKE CONCAT('%', #{keyword}, '%')
