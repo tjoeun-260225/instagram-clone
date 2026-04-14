@@ -6,6 +6,7 @@ db:
 upload:
   profile-path: C:/uploads/profile
   board-path: C:/uploads/board
+
 mail:
   username: tjoeun.jr5@gmail.com
   password: chjk wemd eooc wflj
@@ -14,7 +15,11 @@ jwt:
     secret: springboard-jwt-secret-key-2026-change-this-please!!!
 
 
-
+kakao:
+  config:
+    client-id: 10ab6132cea328fff0ba8a0412eedbf3
+    redirect-uri: http://localhost:8080/api/kakao/callback
+    client-secret: 6ADsTGbuBiBPqgoKGjw9FNXsDKKvyhjD
 
 
 
